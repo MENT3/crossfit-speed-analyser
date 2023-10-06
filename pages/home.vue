@@ -12,33 +12,26 @@ const { data: analysis } = await useAsyncData('analysis', async () => {
   return data
 })
 
-const chartData = data => ({
-  labels: Object.keys(data),
-  datasets: [
-    {
-      label: 'Vitesse (m/s)',
-      data: Object.values(data),
-      pointRadius: 3,
-      pointBorderColor: 'black',
-      pointBackgroundColor: 'black',
-      borderColor: 'lightgrey',
-      showLine: false,
-      trendlineLinear: {
-        lineStyle: 'solid',
-        width: 2
-      }
-    }
-  ]
-})
-
-const chartOptions = {
-  responsive: true,
-  maintainAspectRatio: false
-}
+const items = [{
+  key: 'chart',
+  label: 'Le graph',
+  movement: 'Front Squat'
+}, {
+  key: 'data',
+  label: 'Les données',
+  movement: 'Front Squat'
+}]
 </script>
 
 <template>
   <div class="h-96" v-for="a in analysis" :key="a.id">
-    <Line :options="chartOptions" :data="chartData(Object.fromEntries(a.values.map(Object.values)))" />
+    <UTabs :items="items" class="w-full">
+      <template #item="{item}">
+        <Card :title="item.movement" description="Analyse de vitesse">
+          <Chart :data="a.values" v-if="item.key == 'chart'" />
+          <Form v-else />
+        </Card>
+      </template>
+    </UTabs>
   </div>
 </template>

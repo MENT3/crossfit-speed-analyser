@@ -1,6 +1,5 @@
 <template>
-  <div>
+  <div class="p-4">
     <slot />
-    <AppFooter />
   </div>
 </template>

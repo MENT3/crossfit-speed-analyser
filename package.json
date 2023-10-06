@@ -17,6 +17,9 @@
     "vue-router": "^4.2.5"
   },
   "dependencies": {
-    "@nuxt/ui": "^2.9.0"
+    "@nuxt/ui": "^2.9.0",
+    "chart.js": "^4.4.0",
+    "chartjs-plugin-trendline": "^2.0.5",
+    "vue-chartjs": "^5.2.0"
   }
 }

@@ -5,7 +5,7 @@ const accountForm = ref({name: '', username: ''})
 <template>
   <div class="grid grid-cols-2 grid-flow-cols gap-4">
     <UFormGroup label="20%" name="name">
-      <UInput>
+      <UInput type="number">
         <template #trailing>
           <span class="text-gray-500 dark:text-gray-400 text-xs">m/s</span>
         </template>
@@ -13,7 +13,7 @@ const accountForm = ref({name: '', username: ''})
     </UFormGroup>
 
     <UFormGroup label="30%" name="username">
-      <UInput>
+      <UInput type="number">
         <template #trailing>
           <span class="text-gray-500 dark:text-gray-400 text-xs">m/s</span>
         </template>
@@ -21,7 +21,7 @@ const accountForm = ref({name: '', username: ''})
     </UFormGroup>
 
     <UFormGroup label="40%" name="username">
-      <UInput>
+      <UInput type="number">
         <template #trailing>
           <span class="text-gray-500 dark:text-gray-400 text-xs">m/s</span>
         </template>
@@ -29,7 +29,7 @@ const accountForm = ref({name: '', username: ''})
     </UFormGroup>
 
     <UFormGroup label="50%" name="username">
-      <UInput>
+      <UInput type="number">
         <template #trailing>
           <span class="text-gray-500 dark:text-gray-400 text-xs">m/s</span>
         </template>
@@ -37,7 +37,7 @@ const accountForm = ref({name: '', username: ''})
     </UFormGroup>
 
     <UFormGroup label="60%" name="username">
-      <UInput>
+      <UInput type="number">
         <template #trailing>
           <span class="text-gray-500 dark:text-gray-400 text-xs">m/s</span>
         </template>
@@ -45,7 +45,7 @@ const accountForm = ref({name: '', username: ''})
     </UFormGroup>
 
     <UFormGroup label="70%" name="username">
-      <UInput>
+      <UInput type="number">
         <template #trailing>
           <span class="text-gray-500 dark:text-gray-400 text-xs">m/s</span>
         </template>
@@ -53,7 +53,7 @@ const accountForm = ref({name: '', username: ''})
     </UFormGroup>
 
     <UFormGroup label="80%" name="username">
-      <UInput>
+      <UInput type="number">
         <template #trailing>
           <span class="text-gray-500 dark:text-gray-400 text-xs">m/s</span>
         </template>

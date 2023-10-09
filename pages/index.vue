@@ -32,7 +32,7 @@ const tabsItems = [{
   <UTabs
     v-model="selectedTab"
     :items="tabsItems"
-    class="w-full"
+    class="w-full mb-4"
   >
     <template #default="{ item, selected }">
       <div class="flex items-center gap-2 relative truncate">

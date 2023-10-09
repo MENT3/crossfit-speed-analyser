@@ -41,6 +41,7 @@ async function handleUpdate(e: any) {
         <UInput
           type="number"
           step="0.000001"
+          pattern="[0-9]*"
           v-model.number="v.speed"
         >
           <template #trailing>

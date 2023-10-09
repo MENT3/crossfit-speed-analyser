@@ -13,25 +13,25 @@ export interface Database {
         Row: {
           created_at: string
           id: number
-          movement: number | null
-          user_id: string | null
+          movement_id: number
+          user_id: string
         }
         Insert: {
           created_at?: string
           id?: number
-          movement?: number | null
-          user_id?: string | null
+          movement_id: number
+          user_id: string
         }
         Update: {
           created_at?: string
           id?: number
-          movement?: number | null
-          user_id?: string | null
+          movement_id?: number
+          user_id?: string
         }
         Relationships: [
           {
-            foreignKeyName: "analysis_movement_fkey"
-            columns: ["movement"]
+            foreignKeyName: "analysis_movement_id_fkey"
+            columns: ["movement_id"]
             referencedRelation: "movements"
             referencedColumns: ["id"]
           },
@@ -100,21 +100,21 @@ export interface Database {
       }
       values: {
         Row: {
-          analysis_id: number | null
+          analysis_id: number
           created_at: string
           id: number
           percent: number
           speed: number
         }
         Insert: {
-          analysis_id?: number | null
+          analysis_id: number
           created_at?: string
           id?: number
           percent: number
           speed: number
         }
         Update: {
-          analysis_id?: number | null
+          analysis_id?: number
           created_at?: string
           id?: number
           percent?: number

@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { Database } from '@/types/database.types'
+import { linearRegression } from '@/lib/regression'
 
 const user = await useSupabaseUser()
 const client = useSupabaseClient<Database>()
@@ -9,35 +10,41 @@ const { data: analysis } = await useAsyncData('analysis', async () => {
   return data
 })
 
-const selected = ref(0)
+const selectedTab = ref(0)
+const regressionsValues = computed(() => analysis.value!.map(v => {
+  const x = v.values.map(vv => vv.percent)
+  const y = v.values.map(vv => vv.speed)
+  return linearRegression(x, y)
+}))
 
-const addMovement = async () => {
-  const { data: newAnalysis, aError } = await client.from('analysis').insert({ user_id: user.value!.id }).select('id').single()
-  if (aError) throw aError
-
-  const valuesPayload = [...Array(7)].map((_, i) => ({ analysis_id: newAnalysis.id, percent: (i+2)*10, speed: 0.5}))
-  const { data, error } = await client.from('values').upsert(valuesPayload)
-  if (error) throw error
-}
-
-const items = [{
+const tabsItems = [{
   slot: 'chart',
-  label: 'Calculateurs'
+  label: 'Calculateurs',
+  icon: 'i-heroicons-chart-bar'
 }, {
   slot: 'data',
-  label: 'Les données'
+  label: 'Les données',
+  icon: 'i-heroicons-pencil-square'
 }]
 </script>
 
 <template>
-  <UTabs :items="items" class="w-full" v-model="selected">
+  <UTabs :items="tabsItems" class="w-full" v-model="selectedTab">
+    <template #default="{ item, selected }">
+      <div class="flex items-center gap-2 relative truncate">
+        <UIcon :name="item.icon" class="w-4 h-4 flex-shrink-0" />
+        <span class="truncate">{{ item.label }}</span>
+        <span v-if="selected" class="absolute -right-4 w-2 h-2 rounded-full bg-primary-500 dark:bg-primary-400" />
+      </div>
+    </template>
+
     <template #chart="{ item }">
       <div class="flex flex-col space-y-4">
-        <Card :title="a.movements.name" description="Analyse de vitesse" v-for="a in analysis" :key="a.id">
+        <Card :title="a.movements?.name" description="Analyse de vitesse" v-for="(a, i) in analysis" :key="a.id">
           <Chart :data="a.values" />
 
           <template #footer>
-            <Calculator />
+            <Calculator :slope="regressionsValues[i].slope" :intercept="regressionsValues[i].intercept" />
           </template>
         </Card>
       </div>
@@ -45,16 +52,10 @@ const items = [{
 
     <template #data="{ item }">
       <div class="flex flex-col space-y-4">
-        <Card :title="a.movements.name" description="Analyse de vitesse" v-for="a in analysis" :key="a.id">
-          <Form v-model="a.values" @on-change="selected=0" />
+        <Card :title="a.movements?.name" description="Analyse de vitesse" v-for="a in analysis" :key="a.id">
+          <Form v-model="a.values" @on-change="selectedTab=0" />
         </Card>
       </div>
     </template>
   </UTabs>
-
-  <div class="w-full mt-4">
-    <UButton color="black" variant="solid" size="xl" block @click="addMovement">
-      Ajouter un mouvement
-    </UButton>
-  </div>
 </template>

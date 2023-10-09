@@ -5,7 +5,11 @@ const props = defineProps(['data'])
 
 const chartOptions = {
   responsive: true,
-  maintainAspectRatio: false,
+  plugins: {
+    legend: {
+      display: false
+    }
+  }
 }
 
 const formatedValues = {
@@ -30,7 +34,5 @@ const formatedValues = {
 </script>
 
 <template>
-  <div class="h-52">
-    <Line :options="chartOptions" :data="formatedValues" />
-  </div>
+  <Line :options="chartOptions" :data="formatedValues" />
 </template>

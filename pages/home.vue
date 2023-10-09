@@ -53,7 +53,7 @@ const tabsItems = [{
     <template #data="{ item }">
       <div class="flex flex-col space-y-4">
         <Card :title="a.movements?.name" description="Analyse de vitesse" v-for="a in analysis" :key="a.id">
-          <Form v-model="a.values" @on-change="selectedTab=0" />
+          <Form v-model="a.values" :analysis-id="a.id" @on-change="selectedTab=0" />
         </Card>
       </div>
     </template>

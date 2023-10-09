@@ -9,7 +9,7 @@ const x = computed(() => Math.round((speed.value - props.intercept) / props.slop
 </script>
 
 <template>
-  <div class="space-y-4">
+  <div class="flex flex-row items-end space-x-4">
     <UFormGroup label="La vitesse" name="username">
       <UInput :model-value="y" @update:model-value="v => speed = Number(v)">
         <template #trailing>
@@ -17,6 +17,8 @@ const x = computed(() => Math.round((speed.value - props.intercept) / props.slop
         </template>
       </UInput>
     </UFormGroup>
+
+    <UIcon name="i-heroicons-arrows-right-left" class="h-8" />
 
     <UFormGroup label="Le pourcentage" name="username">
       <UInput :model-value="x" @update:model-value="v => percentage = Number(v)">

@@ -13,19 +13,28 @@ export interface Database {
         Row: {
           created_at: string
           id: number
+          movement: number | null
           user_id: string | null
         }
         Insert: {
           created_at?: string
           id?: number
+          movement?: number | null
           user_id?: string | null
         }
         Update: {
           created_at?: string
           id?: number
+          movement?: number | null
           user_id?: string | null
         }
         Relationships: [
+          {
+            foreignKeyName: "analysis_movement_fkey"
+            columns: ["movement"]
+            referencedRelation: "movements"
+            referencedColumns: ["id"]
+          },
           {
             foreignKeyName: "analysis_user_id_fkey"
             columns: ["user_id"]
@@ -33,6 +42,27 @@ export interface Database {
             referencedColumns: ["id"]
           }
         ]
+      }
+      movements: {
+        Row: {
+          created_at: string
+          id: number
+          key: string
+          name: string
+        }
+        Insert: {
+          created_at?: string
+          id?: number
+          key: string
+          name: string
+        }
+        Update: {
+          created_at?: string
+          id?: number
+          key?: string
+          name?: string
+        }
+        Relationships: []
       }
       profiles: {
         Row: {

@@ -13,7 +13,7 @@ const handleLogin = async () => {
     const { email, password } = creds
     const { error } = await supabase.auth.signInWithPassword({ email: email, password: password})
     if (error) throw error
-    navigateTo('/home')
+    navigateTo('/')
   } catch (error) {
     alert(error.error_description || error.message)
   } finally {

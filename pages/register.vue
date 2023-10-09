@@ -9,7 +9,7 @@ const state = ref({
 })
 
 function createValues(analysisId) {
-  return [...Array(7)].map((_, i) => ({ percent: i+2*10, speed: 0.5, analysis_id: analysisId }))
+  return [...Array(7)].map((_, i) => ({ percent: (i+2)*10, speed: 0.5, analysis_id: analysisId }))
 }
 
 async function handleSignUp(e) {

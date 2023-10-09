@@ -1,5 +1,13 @@
 <template>
-  <div class="p-4">
-    <slot />
+  <div>
+    <div>
+      Header
+    </div>
+
+    <UContainer>
+      <slot />
+    </UContainer>
+
+    <UNotifications />
   </div>
 </template>

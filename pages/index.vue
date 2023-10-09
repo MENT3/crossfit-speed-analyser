@@ -29,7 +29,12 @@ const tabsItems = [{
 </script>
 
 <template>
-  <UTabs :items="tabsItems" class="w-full" v-model="selectedTab">
+
+  <UTabs
+    v-model="selectedTab"
+    :items="tabsItems"
+    class="w-full"
+  >
     <template #default="{ item, selected }">
       <div class="flex items-center gap-2 relative truncate">
         <UIcon :name="item.icon" class="w-4 h-4 flex-shrink-0" />

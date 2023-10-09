@@ -4,17 +4,26 @@ import { Database } from '@/types/database.types'
 const props = defineProps(['modelValue', 'analysisId'])
 const emit = defineEmits(['update:modelValue', 'onChange'])
 
+const client = useSupabaseClient<Database>()
+const toast = useToast()
+
 const state = ref(props.modelValue)
 const loading = ref(false)
 
 async function submit(e: any) {
   loading.value = true
-  const client = useSupabaseClient<Database>()
   const payload = e.data.map((v: any) => ({ ...v, analysis_id: props.analysisId }))
 
   const { data, error } = await client.from('values').upsert(payload).select("id, percent, speed")
   loading.value = false
   if (error) throw error
+
+  toast.add({
+    title: 'Notification',
+    description: 'Les données ont correctements été sauvegardées',
+    icon: 'i-heroicons-check-circle',
+    timeout: 2500
+  })
 
   emit('update:modelValue', data)
   emit('onChange')

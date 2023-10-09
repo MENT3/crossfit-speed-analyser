@@ -14,7 +14,7 @@ const x = computed(() => Math.round((speed.value - props.intercept) / props.slop
       <UInput
         :model-value="y"
         type="number"
-        pattern="[0-9]*[.,]?[0-9]*"
+        inputmode="decimal"
         @update:model-value="v => speed = Number(v)"
       >
         <template #trailing>
@@ -29,7 +29,7 @@ const x = computed(() => Math.round((speed.value - props.intercept) / props.slop
       <UInput
         :model-value="x"
         type="number"
-        pattern="[0-9]*[.,]?[0-9]*"
+        inputmode="decimal"
         @update:model-value="v => percentage = Number(v)"
       >
         <template #trailing>

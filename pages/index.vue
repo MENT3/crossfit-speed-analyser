@@ -29,7 +29,6 @@ const tabsItems = [{
 </script>
 
 <template>
-
   <UTabs
     v-model="selectedTab"
     :items="tabsItems"

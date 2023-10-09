@@ -10,7 +10,7 @@ const toast = useToast()
 const state = ref(props.modelValue)
 const loading = ref(false)
 
-async function submit(e: any) {
+async function handleUpdate(e: any) {
   loading.value = true
   const payload = e.data.map((v: any) => ({ ...v, analysis_id: props.analysisId }))
 
@@ -31,7 +31,7 @@ async function submit(e: any) {
 </script>
 
 <template>
-  <UForm @submit="submit" :state="state">
+  <UForm @submit.prevent="handleUpdate" :state="state">
     <div class="grid grid-cols-2 grid-flow-cols gap-4">
       <UFormGroup
         v-for="v in state"

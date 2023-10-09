@@ -5,5 +5,12 @@ export default defineNuxtConfig({
   devtools: { enabled: true },
   colorMode: {
     preference: 'light'
+  },
+  supabase: {
+    redirectOptions: {
+      login: '/login',
+      callback: '/confirm',
+      exclude: ['/login', '/register']
+    }
   }
 })

@@ -13,6 +13,7 @@ const x = computed(() => Math.round((speed.value - props.intercept) / props.slop
     <UFormGroup label="La vitesse" name="username">
       <UInput
         :model-value="y"
+        type="number"
         pattern="[0-9]*[.,]?[0-9]*"
         @update:model-value="v => speed = Number(v)"
       >
@@ -27,6 +28,7 @@ const x = computed(() => Math.round((speed.value - props.intercept) / props.slop
     <UFormGroup label="Le pourcentage" name="username">
       <UInput
         :model-value="x"
+        type="number"
         pattern="[0-9]*[.,]?[0-9]*"
         @update:model-value="v => percentage = Number(v)"
       >

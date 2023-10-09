@@ -12,7 +12,7 @@ const loading = ref(false)
 
 async function handleUpdate(e: any) {
   loading.value = true
-  const payload = e.data.map((v: any) => ({ ...v, analysis_id: props.analysisId }))
+  const payload = e.data.map((v: any) => ({ ...v, speed: Number(v.speed), analysis_id: props.analysisId }))
 
   const { data, error } = await client.from('values').upsert(payload).select("id, percent, speed")
   loading.value = false
@@ -42,7 +42,7 @@ async function handleUpdate(e: any) {
           type="number"
           step="0.000001"
           inputmode="decimal"
-          v-model.number="v.speed"
+          v-model.lazy="v.speed"
         >
           <template #trailing>
             <span class="text-gray-500 dark:text-gray-400 text-xs">m/s</span>

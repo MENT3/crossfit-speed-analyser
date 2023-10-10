@@ -44,7 +44,13 @@ const tabsItems = [{
 
     <template #chart="{ item }">
       <div class="flex flex-col space-y-4">
-        <Card :title="a.movements?.name" description="Analyse de vitesse" v-for="(a, i) in analysis" :key="a.id">
+        <Card
+          v-for="(a, i) in analysis"
+          :key="a.id"
+          :title="a.movements?.name"
+          :r2="regressionsValues[i].r2"
+          description="Analyse de vitesse"
+        >
           <Chart :data="a.values" />
 
           <template #footer>
@@ -56,7 +62,13 @@ const tabsItems = [{
 
     <template #data="{ item }">
       <div class="flex flex-col space-y-4">
-        <Card :title="a.movements?.name" description="Analyse de vitesse" v-for="a in analysis" :key="a.id">
+        <Card
+          v-for="(a, i) in analysis"
+          :key="a.id"
+          :title="a.movements?.name"
+          :r2="regressionsValues[i].r2"
+          description="Analyse de vitesse"
+        >
           <Form v-model="a.values" :analysis-id="a.id" @on-change="selectedTab=0" />
         </Card>
       </div>
